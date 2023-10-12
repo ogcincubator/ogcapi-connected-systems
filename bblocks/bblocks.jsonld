@@ -72,6 +72,7 @@
   "skos:prefLabel": "OGC Building Blocks Register",
   "hasConcepts": [
     {
+      "itemIdentifier": "ogc.connected-systems.part1.sensorml.deployment",
       "name": "SensorML Deployment",
       "abstract": "A Deployment Feature in SensorML format",
       "status": "invalid",
@@ -89,7 +90,6 @@
         "application/yaml": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/annotated-schemas/connected-systems/part1/sensorml/deployment/schema.yaml",
         "application/json": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/annotated-schemas/connected-systems/part1/sensorml/deployment/schema.json"
       },
-      "itemIdentifier": "ogc.connected-systems.part1.sensorml.deployment",
       "shaclRules": [],
       "sourceFiles": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/_sources/part1/sensorml/deployment/",
       "validationPassed": false,

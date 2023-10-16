@@ -13,10 +13,10 @@ bblocks:ogc.connected-systems.part1.sensorml.deployment a skos:Concept,
     dct:created "2023-10-11T00:00:00+00:00"^^xsd:dateTime ;
     dct:description [ dct:format "text/markdown" ;
             rdfs:isDefinedBy "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/markdown/connected-systems/part1/sensorml/deployment/index.md" ],
-        [ dct:format "text/html" ;
-            rdfs:isDefinedBy "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/slate-build/connected-systems/part1/sensorml/deployment/" ],
         [ dct:format "application/json" ;
-            rdfs:isDefinedBy "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/json-full/connected-systems/part1/sensorml/deployment/index.json" ] ;
+            rdfs:isDefinedBy "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/json-full/connected-systems/part1/sensorml/deployment/index.json" ],
+        [ dct:format "text/html" ;
+            rdfs:isDefinedBy "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/slate-build/connected-systems/part1/sensorml/deployment/" ] ;
     dct:hasVersion "0.1" ;
     dct:modified "2023-10-11"^^xsd:date ;
     skos:inScheme <https://www.opengis.net/def/bblocks> ;
@@ -29,14 +29,14 @@ bblocks:ogc.connected-systems.part1.sensorml.deployment a skos:Concept,
     skos:prefLabel "OGC Building Blocks Register" .
 
 [] a prov:Activity ;
-    prov:endedAtTime "2023-10-12T00:27:55.124625"^^xsd:dateTime ;
-    prov:startedAtTime "2023-10-12T00:27:55.034856"^^xsd:dateTime ;
+    prov:endedAtTime "2023-10-16T22:05:14.340743"^^xsd:dateTime ;
+    prov:startedAtTime "2023-10-16T22:05:14.265063"^^xsd:dateTime ;
     prov:used [ a prov:Entity ;
-            dct:format "application/yaml" ;
-            rdfs:seeAlso <file:///src/ogc/bblocks/register-context.yaml> ],
-        [ a prov:Entity ;
             dct:format "application/json" ;
-            rdfs:seeAlso <https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/register.json> ] ;
+            rdfs:seeAlso <https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/register.json> ],
+        [ a prov:Entity ;
+            dct:format "application/yaml" ;
+            rdfs:seeAlso <file:///src/ogc/bblocks/register-context.yaml> ] ;
     prov:wasAssociatedWith [ a prov:Agent,
                 schema:SoftwareApplication ;
             rdfs:label "OGC-NA tools" ;

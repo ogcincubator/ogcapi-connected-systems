@@ -1,12 +1,13 @@
 {
   "title": "Validation report for ogc.connected-systems.part1.sensorml.deployment - SensorML Deployment",
+  "bblockName": "SensorML Deployment",
   "bblockId": "ogc.connected-systems.part1.sensorml.deployment",
-  "generated": "2023-10-12T00:27:55.032230+00:00",
+  "generated": "2023-10-16T22:05:14.262640+00:00",
   "items": [
     {
       "source": {
         "type": "EXAMPLE",
-        "require_fail": false,
+        "requireFail": false,
         "filename": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/_sources/part1/sensorml/deployment/example_1_1.json",
         "exampleIndex": 1,
         "snippetIndex": 1,

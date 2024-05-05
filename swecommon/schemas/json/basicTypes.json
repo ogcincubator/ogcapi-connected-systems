@@ -17,6 +17,12 @@
       "type": "object",
       "properties": {
         "label": {
+          "description": "A human readable label for the unit",
+          "type": "string",
+          "minLength": 1
+        },
+        "symbol": {
+          "description": "The preferred unit symbol to use when presenting the data in a UI (use the UCUM code instead if no symbol is provided)",
           "type": "string",
           "minLength": 1
         }
@@ -80,8 +86,7 @@
           },
           "required": [ "pattern" ]
         }
-      ],
-      "unevaluatedProperties": false
+      ]
     },
     "AllowedValues": {
       "description": "Defines the permitted values for the component as an enumerated list and/or a list of inclusive ranges",
@@ -124,8 +129,7 @@
           "title": "Intervals",
           "required": [ "intervals" ]
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "AllowedTimes": {
       "description": "Defines the permitted values for the component, as a time range or an enumerated list of time values",
@@ -167,8 +171,7 @@
           "title": "Intervals",
           "required": [ "intervals" ]
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "NilValuesText": {
       "type": "array",

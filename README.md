@@ -28,29 +28,54 @@ It is in this context that we propose a draft OGC API - Connected Systems Standa
 
 The API is intended to act as a bridge between static data (geographic and other domain features) and dynamic data (observations of these feature properties, and commands/actuations that change these feature properties). To this end, **the API will be an extension of the [OGC API - Features](https://ogcapi.ogc.org/features)** and, in addition to providing its own mechanism for retrieving static and dynamic data, the API will allow linking to other APIs from the OGC ecosystem, such as [3D GeoVolumes](https://ogcapi.ogc.org/geovolumes/), [3D Tiles](https://github.com/CesiumGS/3d-tiles/tree/main/specification), [Coverages](https://ogcapi.ogc.org/coverages), [EDR](https://ogcapi.ogc.org/edr), [SensorThings](https://ogcapi.ogc.org/sensorthings), [Moving Features](https://ogcapi.ogc.org/movingfeatures), [Processes](https://ogcapi.ogc.org/processes), and other Features API instances.
 
-The proposed API Standard consists of two parts and defines several resource types:
+The proposed API Standard consists of the following parts:
 
-Part 1 - Feature Resources ([Current Draft Preview](https://opengeospatial.github.io/ogcapi-connected-systems/api/part1/standard/23-001r0.html), [OpenAPI Docs](https://opengeospatial.github.io/ogcapi-connected-systems/redoc/?url=../api/part1/openapi/openapi-connectedsystems-1.yaml))
+Part 1 - Feature Resources ([Current Draft Preview](https://docs.ogc.org/DRAFTS/23-001r0.html), [OpenAPI Docs](https://opengeospatial.github.io/ogcapi-connected-systems/redoc/?url=../api/part1/openapi/openapi-connectedsystems-1.yaml))
 - Systems (metadata of sensors, actuators, platforms, simulations, etc.)
 - Procedures (metadata of procedures implemented by system, which includes automated system specs/datasheets and human driven activities)
 - Deployments (metadata of system deployments)
 - Sampling Features (metadata about sampling geometries/methodologies used by observing systems) 
 - Subsystems / Components
+- Property Definitions (semantical information for observed properties, controlled properties and system properties)
 
 Part 2 - Dynamic Data ([Current Draft Preview](https://opengeospatial.github.io/ogcapi-connected-systems/api/part2/standard/23-002r0.html), [OpenAPI Docs](https://opengeospatial.github.io/ogcapi-connected-systems/redoc/?url=../api/part2/openapi/openapi-connectedsystems-2.yaml))
+- Dynamic Feature Properties
 - Data Streams
 - Observations
 - Control Streams
 - Commands and Command Status
-- MQTT Bindings ([AsyncAPI Docs](https://github.com/opengeospatial/ogcapi-connected-systems/blob/master/api/part2/asyncapi/asyncapi-connectedsystems-2.yaml))
+- System Events
 
-Beyond the above resource types, a few query parameters are added to the ones defined by OGC API - Features:
+Part 3 - Pub/Sub ([AsyncAPI Docs](https://github.com/opengeospatial/ogcapi-connected-systems/blob/master/api/part2/asyncapi/asyncapi-connectedsystems-2.yaml))
+- MQTT Bindings
+- AMQP Bindings
+- Other pub/sub bindings???
+
+Part 4 - Sampling Feature Types
+- OMS Sample Types (SpatialSample, StatisticalSample, MaterialSample)
+- Feature Parts
+- Parametric Sampling Features
+  - Relative Sampling Point
+  - Sampling Sphere (or Ellipsoid?)
+  - Sampling Profile
+  - Viewing Frustum
+  - Viewing Sector
+
+Part 5 - Binary Encoding Formats
+- FlatGeobuf Encoding (for features)
+- FlatBuffers Encoding (for obs and commands)
+- Protobuf Encoding (for obs and commands)
+- Common Video Formats (mapping to obs model)?
+- Other encodings?
+
+
+Beyond resource types listed above, new query parameters are added to the ones defined by OGC API - Features:
 - WKT geometry filter
 - Full-text search based on keywords and prefix
 - Filter on feature property values
 - Filter on associated resource IDs (e.g. find all systems implementing a given procedure, all datastreams for a certain observable, etc.)
 
-Certain types of join queries will be defined in a future extension.
+Certain types of join queries may be defined in a future extension.
 
 A key objective of this API is to support, not only JSON based encodings, but also efficient binary encodings for observations and commands (e.g. protobuf). Initially, we plan to support the following formats:
 
@@ -58,16 +83,12 @@ For feature data:
 - [GeoJSON](https://geojson.org/)
 - [JSON-FG](https://docs.ogc.org/DRAFTS/21-045.html)
 - SensorML (JSON and XML)
+- FlatGeoBuff
 
 For datastreams, controls, observations and commands:
 - O&M (JSON and XML)
 - SWE Common schema (JSON and XML)
 - SWE Common data (JSON, text, binary, protobuf)
-
-In addition to classical HTTP/REST CRUD operations, the following protocol bindings will be defined:
-
-- Websocket
-- MQTT
 
 
 ## Work Items

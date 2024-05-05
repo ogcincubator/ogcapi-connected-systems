@@ -2,7 +2,7 @@
   "$schema": "../PhysicalSystem.json",
   "type": "PhysicalSystem",
   "id": "qgqjt7276pa",
-  "uniqueId": "urn:osh:sensor:system:001",
+  "uniqueId": "urn:x-org:sensor:system:001",
   "definition": "http://www.w3.org/ns/ssn/System",
   "label": "Hierarchical System",
   "description": "Example of hierarchical system with components and connections",
@@ -15,6 +15,7 @@
       "name": "sensor1",
       "type": "SimpleProcess",
       "uniqueId": "urn:mysensor:002",
+      "label": "Magnetometer",
       "description": "My sensor component, described inline",
       "typeOf": {
         "href": "https://data.example.com/link/to/procedure",

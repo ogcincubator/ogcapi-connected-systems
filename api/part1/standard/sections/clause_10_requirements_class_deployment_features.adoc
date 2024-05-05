@@ -1,0 +1,108 @@
+
+[[clause-deployment-features]]
+== Requirements Class "Deployment Features"
+
+=== Overview
+include::../requirements/deployment/requirements_class_deployment_features.adoc[]
+
+The "Deployment Features" requirements class specifies how `Deployment` descriptions are provided using the CS API.
+
+The `Deployment` resource implements the _http://www.w3.org/ns/ssn/Deployment[Deployment]_ concept defined in the <<SOSA-SSN,SSN Ontology>> and is used to provide information about the deployment of one or more `Systems` (with or without payloads) for a specific purpose (often at a specific location and time).
+
+[example%unnumbered]
+====
+*Deployment Examples*
+
+- An in-situ sensor deployed at a given location
+- A network of in-situ sensors deployed along a river
+- A network of security cameras deployed in a city
+- A mission involving one or more unmanned systems (platforms) with payloads
+- A team deployed to collect survey responses
+- A sample collection campaign involving field personnel
+- A forecast model run
+====
+
+
+[[clause-deployment-resource]]
+=== Deployment Resource
+
+==== Introduction
+
+In the CS API Standard, `Deployment` resources are a special kind of feature resource that implements the _http://www.w3.org/ns/ssn/Deployment[ssn:Deployment]_ concept.
+
+This section defines the attributes and associations composing the `Deployment` resource, but the exact way attributes and associations are encoded in the payload is defined by each encoding. For encodings defined in this document, please see:
+
+- <<clause-geojson-deployment,Deployment resource as GeoJSON>>
+- <<clause-sensorml-deployment,Deployment resource as SensorML>>
+
+==== Properties
+
+The following tables describe the attributes and associations of a `Deployment` resource and their mapping to SOSA/SSN.
+
+All `Deployment` resource representations provided by encoding requirements classes map to these properties.
+
+[#deployment-attributes,reftext='{table-caption} {counter:table-num}']
+.Deployment Attributes
+[width="100%",cols="5,5,17,3,3",options="header"]
+|====
+| *Name*              | *SOSA/SSN Property* | *Definition* | *Data Type* | *Usage*
+| `uniqueIdentifier`  | RDF concept URI | The unique identifier of the deployment in the form of a URI (preferably a URN). This identifier should be persistent and independent of the actual resource URL. | URI | Required
+| `name`              | `rdfs:label` | The human readable name of the deployment. | String | Required
+| `description`       | `rdfs:comment` | A human readable description for the deployment. | String | Optional
+| `deploymentType`    | `rdfs:type` | The type of deployment. | URI | Optional
+| `validTime`         | - | The time period during which the systems are deployed. | DateTime | Required
+| `location`          | `geo:lat`/`geo:lon` | The location or area where the systems are deployed. | Geometry | Optional
+|====
+
+NOTE: The deployment location is not to be confused with the features of interest or sampling features location/geometry. For in-situ and short-range remote sensors, the deployment location may include the sampling features, but it is usually not true for long range remote sensing such as space based earth observation. If the deployed systems are mobile, the deployment location should be the entire area where the systems can be moved to.
+
+NOTE: For deployments of models or processes, the location would usually not be provided, and the user should query the area covered by the sampling feature(s) instead (i.e. the geographic area covered by the model). If a deployment location is provided, it should be the location where the hardware executing the process is located, not the location of the sampling features.
+
+
+[#deployment-assocs,reftext='{table-caption} {counter:table-num}']
+.Deployment Associations
+[width="100%",cols="5,5,10,10,3",options="header"]
+|====
+| *Name*                | *SOSA/SSN Property*  | *Definition* | *Target Content* | *Usage*
+| `platform`            | `ssn:deployedOnPlatform` | The platform on which the systems are deployed. | A single `System` resource (inline or by-reference). | Optional
+| `deployedSystems`     | `ssn:deployedSystem` | The list of `Systems` deployed during the `Deployment`, if any. | A collection of `System` resources (inline or by-reference). | Required
+| `subdeployments`      | - | The list of subdeployments that are part of the `Deployment`, if any. | A collection of `Deployment` resources (inline or by-reference). | Required
+| `featuresOfInterest`  | - | The ultimate features of interest that are observed and/or controlled during the `Deployment`. | A collection of `Feature` resources (inline or by-reference). | Optional
+| `datastreams`         | - | The `Data Streams` containing observations collected during the `Deployment`. | A collection of `DataStream` resources (inline or by-reference). | Optional
+| `controlstreams`      | - | The `Control Streams` that received commands issued during the `Deployment`. | A collection of `ControlStream` resources (inline or by-reference). | Optional
+|====
+
+
+=== Canonical URL
+
+The CS API Standard requires that a `Deployment` resource has a canonical URL through which it can be retrieved independently of its membership to any collection.
+
+include::../requirements/deployment/req_canonical_url.adoc[]
+
+
+=== Root Collection
+
+A root collection where all `Deployment` resources can be searched must be available at a CS API endpoint.
+
+include::../requirements/deployment/req_canonical_collection.adoc[]
+
+
+=== Feature Collections
+
+`Deployment` feature collections are identified with the feature type `deployment`.
+
+include::../requirements/deployment/req_collections_type.adoc[]
+
+`Deployment` resources can also be grouped into collections according to any arbitrary criteria. Any number of feature collections containing `Deployment` features can be available at a CS API endpoint.
+
+include::../requirements/deployment/req_collections_others.adoc[]
+
+[example%unnumbered]
+====
+*Examples*
+
+- All saildrone deployments at URL `{api_root}/collections/saildrone_missions`
+- All special forces deployments at URL `{api_root}/collections/sof_missions`
+
+Note that a given deployment can be part of multiple collections at the same time.
+====

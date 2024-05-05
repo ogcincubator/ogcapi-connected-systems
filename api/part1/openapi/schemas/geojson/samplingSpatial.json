@@ -3,21 +3,25 @@
   "allOf": [
     { "$ref": "samplingFeature.json" },
     {
-      "type": "object",
-      "required": [ "geometry" ],
-      "properties": {
-        "properties": {
+      "anyOf": [
+        {
           "type": "object",
           "properties": {
-            "validTime": {
-              "$ref": "../common/commonDefs.json#/definitions/TimePeriod"
-            },
-            "hostedSystem@link": {
-              "$ref": "../common/commonDefs.json#/definitions/Link"
+            "geometry": {
+              "type": "object"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [ "pose" ]
             }
           }
         }
-      }
+      ]
     }
   ]
 }

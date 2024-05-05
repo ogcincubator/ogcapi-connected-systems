@@ -1,0 +1,20 @@
+[requirements_class,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete
+subject:: Web API
+inherit:: /req/api-common
+inherit:: http://www.opengis.net/spec/ogcapi-features-4/1.0/req/create-replace-delete[^]
+requirement:: /req/create-replace-delete/system
+requirement:: /req/create-replace-delete/system-delete-cascade
+requirement:: /req/create-replace-delete/subsystem
+requirement:: /req/create-replace-delete/deployment
+requirement:: /req/create-replace-delete/subdeployment
+requirement:: /req/create-replace-delete/procedure
+requirement:: /req/create-replace-delete/sampling-feature
+requirement:: /req/create-replace-delete/property
+requirement:: /req/create-replace-delete/create-in-collection
+requirement:: /req/create-replace-delete/replace-in-collection
+requirement:: /req/create-replace-delete/delete-in-collection
+requirement:: /req/create-replace-delete/add-to-collection
+====

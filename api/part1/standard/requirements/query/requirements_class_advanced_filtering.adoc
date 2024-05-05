@@ -1,17 +1,33 @@
-[[rc_filter-advanced-filters]]
-[cols="1,4",width="90%",options="header"]
-|===
-2+|*Requirements Class*
-2+|http://www.opengis.net/spec/ogcapi-connectedsystems-1/1.0/req/advanced-filtering
-|Target type    |Web API
-|Dependency     |<<clause-api-common>>
-|Dependency     |OGC 06-103r4 - Clause 7: Well-known Text Representation for Geometry
-|Conditional
- Dependency     |<<clause-system-features>>
-|Conditional
- Dependency     |<<clause-procedure-features>>
-|Conditional
- Dependency     |<<clause-deployment-features>>
-|Conditional
- Dependency     |<<clause-sampling-features>>
-|===
+[requirement,model=ogc]
+====
+[%metadata]
+type:: class
+identifier:: /req/advanced-filtering
+subject:: Web API
+inherit:: /req/api-common
+indirect-dependency:: OGC 06-103r4 - Clause 7: Well-known Text Representation for Geometry
+requirement:: /req/advanced-filtering/id-list-schema
+requirement:: /req/advanced-filtering/resource-by-id
+requirement:: /req/advanced-filtering/resource-by-keyword
+requirement:: /req/advanced-filtering/feature-by-geom
+requirement:: /req/advanced-filtering/system-by-parent
+requirement:: /req/advanced-filtering/system-by-procedure
+requirement:: /req/advanced-filtering/system-by-foi
+requirement:: /req/advanced-filtering/system-by-obsprop
+requirement:: /req/advanced-filtering/system-by-controlprop
+//requirement:: /req/advanced-filtering/procedure-by-foi
+requirement:: /req/advanced-filtering/procedure-by-obsprop
+requirement:: /req/advanced-filtering/procedure-by-controlprop
+requirement:: /req/advanced-filtering/deployment-by-parent
+requirement:: /req/advanced-filtering/deployment-by-system
+requirement:: /req/advanced-filtering/deployment-by-foi
+requirement:: /req/advanced-filtering/deployment-by-obsprop
+requirement:: /req/advanced-filtering/deployment-by-controlprop
+requirement:: /req/advanced-filtering/sf-by-foi
+requirement:: /req/advanced-filtering/sf-by-obsprop
+requirement:: /req/advanced-filtering/sf-by-controlprop
+requirement:: /req/advanced-filtering/prop-by-baseprop
+requirement:: /req/advanced-filtering/prop-by-object
+//requirement:: /req/advanced-filtering/prop-by-foi
+requirement:: /req/advanced-filtering/combined-filters
+====

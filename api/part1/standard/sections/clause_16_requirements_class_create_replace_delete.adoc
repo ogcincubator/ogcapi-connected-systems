@@ -1,0 +1,217 @@
+[[clause-resource-crd]]
+== Requirements Class "Create/Replace/Delete"
+
+=== Overview
+include::../requirements/crud/requirements_class_crd.adoc[]
+
+The "Create/Replace/Delete" requirements class specifies how instances of the resource types defined previously are created, replaced and deleted via a CS API endpoint.
+
+All resources are created, replaced and deleted using CREATE (HTTP POST), REPLACE (HTTP PUT) and DELETE (HTTP DELETE) operations, respectively, as defined by the {ogcapi-features-4} Standard.
+
+{ogcapi-features-4} uses the terms "resources endpoint" and "resource endpoint" to identify the paths where these operations are supported by the server. The following sections provide these endpoints for each resource type defined by the CS API Standard.
+
+
+=== Systems
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/system
+
+conditions:: The server implements <<clause-system-features,/req/system-features>>
+
+part:: For `System` features, the resources endpoints used for CREATE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/systems`
+  - `{api_root}/collections/{systemCollectionId}/items`
+
+part:: For `System` features, the resource endpoints used for REPLACE and DELETE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/systems/{id}`
+  - `{api_root}/collections/{systemCollectionId}/items/{id}`
+
+part:: The parameter `systemCollectionId` SHALL correspond to the `id` property of a `System` feature collection.
+====
+
+The following constraints must be implemented by the server.
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/system-delete-cascade
+
+conditions:: The server implements <<clause-system-features,/req/system-features>>
+
+part:: By default, the server SHALL reject a DELETE request on a `System` resource that has nested resources (i.e. subsystems, sampling features, datastreams, control streams) or that is associated with a deployment.
+
+part:: If the `System` resource is not associated with any `Deployment` resource, and the request contains the `cascade` parameter, the server SHALL accept the DELETE request and delete the `System` resource as well as all its nested resources.
+
+part:: If the `System` resource is associated with a `Deployment` resource, the `Deployment` resource SHALL be deleted first.
+====
+
+
+=== Subsystems
+
+Subsystems (i.e. system components) can only be created as sub-resources of a parent system, but are updated/deleted at their canonical URL just like any other `System` resource.
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/subsystem
+
+conditions:: The server implements <<clause-subsystems,/req/subsystem>>
+
+part:: The resources endpoints used for adding subsystems (CREATE operation) SHALL be the URIs specified by the following URI template:
+  - `{api_root}/systems/{parentId}/subsystems`
+====
+
+NOTE: There is no operation to "move" a subsystem from one parent to another. To achieve this, the client must delete the subsystem and recreate it under another parent system.
+
+
+=== Deployments
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/deployment
+
+conditions:: The server implements <<clause-deployment-features,/req/deployment-features>>
+
+part:: For `Deployment` features, the resources endpoints used for CREATE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/deployments`
+  - `{api_root}/collections/{deploymentCollectionId}/items`
+
+part:: For `Deployment` features, the resource endpoints used for REPLACE and DELETE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/deployments/{id}`
+  - `{api_root}/collections/{deploymentCollectionId}/items/{id}`
+
+part:: The parameter `deploymentCollectionId` SHALL correspond to the `id` property of a `Deployment` feature collection.
+====
+
+
+=== Subdeployments
+
+Subdeployments can only be created as sub-resources of a parent deployment, but are updated/deleted at their canonical URL just like any other `Deployment` resource.
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/subdeployment
+
+conditions:: The server implements <<clause-subdeployments,/req/subdeployment>>
+
+part:: The resources endpoints used for adding subdeployments (CREATE operation) SHALL be the URIs specified by the following URI template:
+  - `{api_root}/deployments/{parentId}/subdeployments`
+====
+
+
+=== Procedures
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/procedure
+
+conditions:: The server implements <<clause-procedure-features,/req/procedure-features>>
+
+part:: For `Procedure` features, the resources endpoints used for CREATE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/procedures`
+  - `{api_root}/collections/{procedureCollectionId}/items`
+
+part:: For `Procedure` features, the resource endpoints used for REPLACE and DELETE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/procedures/{id}`
+  - `{api_root}/collections/{procedureCollectionId}/items/{id}`
+
+part:: The parameter `procedureCollectionId` SHALL correspond to the `id` property of a `Procedure` feature collection.
+====
+
+
+=== Sampling Features
+
+`Sampling Features` are created as sub-resources of a parent system.
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/sampling-feature
+
+conditions:: The server implements <<clause-sampling-features,/req/sampling-features>>
+
+part:: For `Sampling Features`, the resources endpoints used for CREATE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/samplingFeatures`
+
+part:: For `Sampling Features`, the resource endpoints used for REPLACE and DELETE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/systems/{sysId}/samplingFeatures/{id}`
+  - `{api_root}/samplingFeatures/{id}`
+  - `{api_root}/collections/{sfCollectionId}/items/{id}`
+
+part:: The parameter `sfCollectionId` SHALL correspond to the `id` property of a `Sampling Feature` collection.
+====
+
+
+=== Property Definitions
+
+`Property` resources are created, replaced and deleted using HTTP POST, PUT and DELETE operations, respectively.
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/property
+
+conditions:: The server implements <<clause-derived-properties,/req/derived-properties>>
+
+part:: For `Property` resources, the resources endpoints used for CREATE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/properties`
+  - `{api_root}/collections/{propertyCollectionId}/items`
+
+part:: For `Property` resources, the resource endpoints used for REPLACE and DELETE operations SHALL be the URIs specified by the following URI templates:
+  - `{api_root}/properties/{id}`
+  - `{api_root}/collections/{propertyCollectionId}/items/{id}`
+
+part:: The parameter `propertyCollectionId` SHALL correspond to the `id` property of a `Property` resource collection.
+====
+
+
+=== Custom Collections
+
+This clause defines the expected behavior of the server when Resource Collections other than the root collections are exposed by the server (this causes the same resource to be accessible via multiple collections simultaneously).
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/create-in-collection
+
+part:: When a resource defined in the CS API Standard is successfully created by the server at any endpoint, the server SHALL always make it available in the root collection corresponding to the resource type.
+====
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/replace-in-collection
+
+part:: If a resource is successfully replaced by the server, the server SHALL reflect this change in all other collections that the resource is part of.
+====
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/delete-in-collection
+
+part:: If a resource is deleted from a root collection, the server SHALL also delete it from all other collections that the resource is part of.
+
+part:: If a resource is deleted from a collection other than the root collection, the server SHALL only delete it from this collection.
+====
+
+Adding existing resources to one or more custom collections is done by posting a list of resource URIs to the collection endpoint.
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/create-replace-delete/add-to-collection
+
+part:: The server SHALL support adding existing resources to a collection by reference.
+
+part:: The `Content-Type` header of the request SHALL be set to `text/uri-list`.
+
+part:: The body of the POST request SHALL contain the list of URIs of resources that need to be added to the collection, formatted with one URI per line (see https://www.iana.org/assignments/media-types/text/uri-list).
+
+part:: All URIs included in the content body SHALL be canonical URLs or unique identifiers (UID) of resources available at the same API endpoint.
+====

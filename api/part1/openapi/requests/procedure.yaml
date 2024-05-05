@@ -1,0 +1,8 @@
+required: true
+content:
+  application/geo+json:
+    schema:
+      $ref: ../schemas/geojson/procedure.json
+  application/sml+json:
+    schema:
+      $ref: ../schemas/sensorml/procedure.json

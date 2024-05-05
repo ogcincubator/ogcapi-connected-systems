@@ -1,9 +1,27 @@
-[[rc_encoding-sensorml]]
-[cols="1,4",width="90%",options="header"]
-|===
-2+|*Requirements Class*
-2+|http://www.opengis.net/spec/ogcapi-connectedsystems-1/1.0/req/encoding/sensorml
-|Target type    |Web API
-|Dependency     |<<clause-api-common>>
-|Dependency     |http://www.opengis.net/spec/sensorml/2.1/req/core
-|===
+[requirement,model=ogc]
+====
+[%metadata]
+type:: class
+identifier:: /req/sensorml
+subject:: Web API
+inherit:: /req/api-common
+inherit:: http://www.opengis.net/spec/SensorML-Ext/1.0/req/json-simple-process
+inherit:: http://www.opengis.net/spec/SensorML-Ext/1.0/req/json-physical-system
+inherit:: http://www.opengis.net/spec/SensorML-Ext/1.0/req/json-deployment
+inherit:: http://www.opengis.net/spec/SensorML-Ext/1.0/req/json-derived-property
+requirement:: /req/sensorml/mediatype-read
+requirement:: /req/sensorml/mediatype-write
+requirement:: /req/sensorml/relation-types
+requirement:: /req/sensorml/resource-id
+requirement:: /req/sensorml/feature-attribute-mapping
+requirement:: /req/sensorml/system-schema
+requirement:: /req/sensorml/system-sml-class
+requirement:: /req/sensorml/system-mappings
+requirement:: /req/sensorml/deployment-schema
+requirement:: /req/sensorml/deployment-mappings
+requirement:: /req/sensorml/procedure-schema
+requirement:: /req/sensorml/procedure-sml-class
+requirement:: /req/sensorml/procedure-mappings
+requirement:: /req/sensorml/property-schema
+requirement:: /req/sensorml/property-mappings
+====

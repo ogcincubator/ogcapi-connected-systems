@@ -1,0 +1,7 @@
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/json-advanced-encodings/datatype-valid
+
+The value of the “dataType” property of the “Component” object SHALL be one of the URIs listed in <<binary-datatypes-table>>.
+====

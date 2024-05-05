@@ -1,0 +1,7 @@
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/json-advanced-encodings/scalar-ref-component-valid
+
+The “ref” attribute of a “Component” object SHALL reference a scalar or range component.
+====

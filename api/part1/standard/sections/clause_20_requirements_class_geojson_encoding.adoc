@@ -1,64 +1,178 @@
-:geojson-schema-root: ../openapi/schemas/geojson
+:geojson-mediatype: application/geo+json
+
 
 [[clause-encoding-geojson]]
-== Requirements Class "GeoJSON Format"
-include::requirements/encoding/geojson/requirements_class_geojson.adoc[]
+=== Requirements Class "GeoJSON Format"
+
+==== Overview
+
+include::../requirements/encoding/geojson/requirements_class_geojson.adoc[]
+
+The "GeoJSON Format" requirements class specifies how resources defined by the CS API Standard are encoded using the GeoJSON format. All feature types defined by this Standard can be encoded as GeoJSON.
+
+The server must also implement Requirements Class "GeoJSON" as specified in the {ogcapi-features-1} Standard.
 
 
-=== Overview
 
-This requirements class specifies how `Feature` descriptions provided through the API are encoded using the GeoJSON format.
-All feature types defined by this Standard can be encoded as GeoJSON.
+==== Media Type
 
-The server must also implement Requirements Class "GeoJSON" of {ogcapi-features-1}.
+The media type used for GeoJSON encoded resources is `{geojson-mediatype}`.
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/mediatype-read
+
+The server SHALL support the media type `{geojson-mediatype}` in the HTTP `Accept` header and respond with a JSON document corresponding to the requested resource type.
+====
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/mediatype-write
+
+conditions:: The server implements <<clause-resource-crd,/req/create-replace-delete>>.
+
+The server SHALL support the media type `{geojson-mediatype}` in the HTTP `Content-Type` header and parse the JSON body according to the resource type.
+====
+
+
+==== Link Relation Types
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/relation-types
+
+For all associations encoded in the `links` member of the JSON response, the link relation type must be set to the association name.
+====
+
+
+==== Common Encoding Rules
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/feature-attribute-mapping
+
+A GeoJSON document representing a `Feature` resource SHALL implement the mappings specified in <<feature-attribute-geojson-mappings>>.
+====
+
+[#feature-attribute-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Mappings of Common Attributes
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Attribute Name*   | *JSON Member*             | *Usage*
+| `uniqueIdentifier` | `properties/uid`          | Value is a JSON string that is a valid URI.
+| `name`             | `properties/name`         | Value is a JSON string.
+| `description`      | `properties/description`  | Value is a JSON string.
+|====
 
 
 
-=== System Encoding Rules
+[[clause-geojson-system]]
+==== System Representation
 
-[[req_geojson-system-schema]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/geojson/system-schema*
-^| Condition | Server implements <<clause-system-features>>.
-^| Condition | The request is made on a collection of `System Features` resources.
-^| A | A 200-response with the media type `application/geo+json` SHALL conform to one of the following schemas:
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/system-schema
 
-       - link:{geojson-schema-root}/systemCollection.json[systemCollection.json] for a collection of systems, and
-       - link:{geojson-schema-root}/system.json[system.json] for a single system.
-|===
+part:: A GeoJSON document containing a single `System` feature SHALL be valid against the JSON schema {geojson-system-schema}.
+
+part:: A GeoJSON document containing a collection of `System` features SHALL be valid against the JSON schema {geojson-system-collection-schema}.
+====
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/system-mappings
+
+A GeoJSON document representing a `System` resource SHALL implement the mappings specified in <<system-attribute-geojson-mappings>> and <<system-assoc-geojson-mappings>>.
+====
+
+[#system-attribute-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Encoding of System Attributes
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Attribute Name (see <<system-attributes>>)* | *JSON Member*            | *Usage*
+| `systemType`     | `properties/featureType` | Use the URI or CURIE from <<system-types>> as the value.
+| `assetType`      | `properties/assetType`   | Use the URI or CURIE from <<asset-types>> as the value.
+| `validTime`      | `properties/validTime`   | Value SHALL be a JSON array with min/max bounds encoded as a ISO8601 date/time string.
+| `location`       | `geometry`               | Value SHALL be a GeoJSON `Point` geometry.
+|====
+
+[#system-assoc-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Encoding of System Associations
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Association Name (see <<system-assocs>>)* | *JSON Member* | *Usage*
+| `systemKind`        | `properties/systemKind@link`    | Value is a weblink resolving to a `System` resource.
+| `parentSystem`      | `links`                         | Value is a weblink* resolving to a `System` resource.
+| `subsystems`        | `links`                         | Value is a weblink* resolving to a `System` collection.
+| `samplingFeatures`  | `links`                         | Value is a weblink* resolving to a `Sampling Features` collection.
+| `datastreams`       | `links`                         | Value is a weblink* resolving to a `DataStream` collection.
+| `controlstreams`    | `links`                         | Value is a weblink* resolving to a `ControlStream` collection.
+| `deployments`       | `links`                         | Value is a weblink* resolving to a `Deployment` collection.
+| `procedures`        | `links`                         | Value is a weblink* resolving to a `Procedure` collection.
+3+| {weblinks-footnote} 
+|====
 
 [[example_geojson_sys1]]
 .A System Feature in GeoJSON format
 =================
-This is a simple description of a fixed in-situ sensor with a link to its alternate SensorML representation.
-
-[source%autofit,JSON]
+This is a simple description of a fixed in-situ sensor in GeoJSON, with a link to its alternate SensorML representation.
+[source%autofit,json]
 ----
-include::../openapi/examples/systems/system-sensor-geojson.json[]
+include::../openapi/examples/systems/thermometer-sensor-geojson.links.json[]
 ----
 =================
 
 
 
-=== Procedure Encoding Rules
+[[clause-geojson-procedure]]
+==== Procedure Representation
 
-[[req_geojson-procedure-schema]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/geojson/procedure-schema*
-^| Condition | Server implements <<clause-procedure-features>>.
-^| Condition | The request is made on a collection of `Procedure Features` resources.
-^| A | A 200-response with the media type `application/geo+json` SHALL conform to one of the following schemas:
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/procedure-schema
 
-       - link:{geojson-schema-root}/procedureCollection.json[procedureCollection.json] for a collection of procedures, and
-       - link:{geojson-schema-root}/procedure.json[procedure.json] for a single procedure.
-|===
+part:: A GeoJSON document containing a single `Procedure` feature SHALL be valid against the JSON schema {geojson-procedure-schema}.
+
+part:: A GeoJSON document containing a collection of `Procedure` features SHALL be valid against the JSON schema {geojson-procedure-collection-schema}.
+====
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/procedure-mappings
+
+A GeoJSON document representing a `Procedure` resource SHALL implement the mappings specified in <<procedure-attribute-geojson-mappings>> and <<procedure-assoc-geojson-mappings>>.
+====
+
+[#procedure-attribute-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Encoding of Procedure Attributes
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Attribute Name (see <<procedure-attributes>>)* | *JSON Member* | *Usage*
+| `procedureType`  | `properties/featureType` | Use the URI or CURIE from <<procedure-types>> as the value.
+| `validTime`      | `properties/validTime`   | Value SHALL be a JSON array with min/max bounds encoded as a ISO8601 date/time string.
+|====
+
+[#procedure-assoc-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Encoding of Procedure Associations
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Association Name (see <<procedure-assocs>>)* | *JSON Member* | *Usage*
+| `implementingSystems`  | `links` | Value is a weblink* resolving to a `System` collection.
+3+| {weblinks-footnote} 
+|====
 
 [[example_geojson_proc1]]
 .A Procedure Feature in GeoJSON format
 =================
-[source%autofit,JSON]
+[source%autofit,json]
 ----
 include::../openapi/examples/procedures/sensor-datasheet-geojson.json[]
 ----
@@ -66,69 +180,112 @@ include::../openapi/examples/procedures/sensor-datasheet-geojson.json[]
 
 
 
-=== Deployment Encoding Rules
+[[clause-geojson-deployment]]
+==== Deployment Representation
 
-[[req_geojson-deployment-schema]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/geojson/deployment-schema*
-^| Condition | Server implements <<clause-deployment-features>>.
-^| Condition | The request is made on a collection of `Deployment Features` resources.
-^| A | A 200-response with the media type `application/geo+json` SHALL conform to one of the following schemas:
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/deployment-schema
 
-       - link:{geojson-schema-root}/deploymentCollection.json[deploymentCollection.json] for a collection of deployments, and
-       - link:{geojson-schema-root}/deployment.json[deployment.json] for a single procedure.
-|===
+part:: A GeoJSON document containing a single `Deployment` feature SHALL be valid against the JSON schema {geojson-deployment-schema}.
+
+part:: A GeoJSON document containing a collection of `Deployment` features SHALL be valid against the JSON schema {geojson-deployment-collection-schema}.
+====
+
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/deployment-mappings
+
+A GeoJSON document representing a `Deployment` resource SHALL implement the mappings specified in <<deployment-attribute-geojson-mappings>> and <<deployment-assoc-geojson-mappings>>.
+====
+
+[#deployment-attribute-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Encoding of Deployment Attributes
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Attribute Name (see <<deployment-attributes>>)* | *JSON Member* | *Usage*
+| `deploymentType`   | `properties/featureType`     | Use the URI or CURIE identifying the type of deployment as the value.
+| `validTime`        | `properties/validTime`       | -
+| `location`         | `geometry`                   | Value is a GeoJSON geometry.
+|====
+
+[#deployment-assoc-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Encoding of Deployment Associations
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Association Name (see <<deployment-assocs>>)* | *JSON Member* | *Usage*
+| `platform`            | `platform@link` | Value is a weblink resolving to a `System` resource.
+| `deployedSystems`     | `deployedSystems@link` | Value is a JSON Array of links to `System` resources.
+| `parentDeployment`    | `links`  | Value is a weblink* resolving to a `Deployment` resource.
+| `subdeployments`      | `links`  | Value is a weblink* resolving to a `Deployment` collection.
+| `featuresOfInterest`  | `links`  | Value is a weblink* resolving to a `Feature` collection.
+| `datastreams`         | `links`  | Value is a weblink* resolving to a `DataStream` collection.
+| `controlstreams`      | `links`  | Value is a weblink* resolving to a `ControlStream` collection.
+3+| {weblinks-footnote} 
+|====
 
 [[example_geojson_dep1]]
 .A Deployment Feature in GeoJSON format
 =================
-[source%autofit,JSON]
+[source%autofit,json]
 ----
 include::../openapi/examples/deployments/deployment-geojson.json[]
 ----
 =================
 
 
+[[clause-geojson-sf]]
+==== Sampling Feature Representation
 
-=== SamplingFeature Encoding Rules
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/sf-schema
 
-[[req_geojson-sf-schema]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/geojson/sf-schema*
-^| Condition | Server implements <<clause-sampling-features>>.
-^| Condition | The request is made on a collection of `Sampling Features` resources.
-^| A | A 200-response with the media type `application/geo+json` SHALL conform to one of the following schemas:
+conditions:: The server implements <<clause-sampling-features,/req/sampling-features>>.
 
-       - link:{geojson-schema-root}/samplingFeatureCollection.json[samplingFeatureCollection.json] for a collection of sampling features, and
-       - link:{geojson-schema-root}/anySamplingFeature.json[anySamplingFeature.json] for a single sampling feature.
-|===
+part:: A GeoJSON document containing a single `Sampling Feature` SHALL be valid against the JSON schema {geojson-samplingFeature-schema}.
 
-[[req_geojson-sf-spatial-schema]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/geojson/sf-spatial-schema*
-^| Condition | Server implements <<clause-sampling-features>>.
-^| Condition | The response contains <<clause-sf-spatial>>.
-^| A | A `Spatial Sampling Feature` SHALL be encoded according to the link:{geojson-schema-root}/samplingSpatial.json[samplingSpatial.json] schema.
-^| B | The GeoJSON `geometry` member SHALL be used to provide the value of the `shape` property of the feature.
-|===
+part:: A GeoJSON document containing a collection of `Sampling Features` SHALL be valid against the JSON schema {geojson-samplingFeature-collection-schema}.
+====
 
-[[req_geojson-sf-specimen-schema]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/geojson/sf-specimen-schema*
-^| Condition | Server implements <<clause-sampling-features>>.
-^| Condition | The response contains <<clause-sf-specimen>>.
-^| A | A `Specimen Feature` SHALL be encoded according to the link:{geojson-schema-root}/samplingSpecimen.json[samplingSpecimen.json] schema.
-^| B | The GeoJSON `geometry` member SHALL be used to provide the value of the `samplingLocation` property of the feature, if provided.
-|===
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/geojson/sf-mappings
+
+A GeoJSON document representing a `Sampling Feature` resource SHALL implement the mappings specified in <<sf-attribute-geojson-mappings>> and <<sf-assoc-geojson-mappings>>.
+====
+
+[#sf-attribute-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Encoding of Sampling Feature Attributes
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Attribute Name (see <<sf-attributes>>)* | *JSON Member* | *Usage*
+| `featureType`    | `properties/featureType` | Use the URI or CURIE specific to a sampling feature type.
+| `validTime`      | `properties/validTime`   | Value SHALL be a JSON array with min/max bounds encoded as a ISO8601 date/time string.
+|====
+
+[#sf-assoc-geojson-mappings,reftext='{table-caption} {counter:table-num}']
+.GeoJSON Encoding of Sampling Feature Associations
+[width="100%",cols="3,3,10",options="header"]
+|====
+| *Association Name (see <<sf-assocs>>)* | *JSON Member*        | *Usage*
+| `sampledFeature`           | `properties/sampledFeature@link` | Value is a weblink resolving to a `Feature` resource.
+| `relatedSamplingFeatures`  | `links`                          | Value is a weblink* resolving to a `Sampling Feature` collection.
+| `parentSystem`             | `links`                          | Value is a weblink* resolving to a `System` resource.
+| `dataStreams`              | `links`                          | Value is a weblink* resolving to a `DataStream` collection.
+| `controlStreams`           | `links`                          | Value is a weblink* resolving to a `ControlStream` collection.
+3+| {weblinks-footnote} 
+|====
+
 
 [[example_sf1]]
 .A Sampling Point Feature in GeoJSON format
 =================
-[source%autofit,JSON]
+[source%autofit,json]
 ----
 include::../openapi/examples/sampling/sampling-point-geojson.json[]
 ----
@@ -137,7 +294,7 @@ include::../openapi/examples/sampling/sampling-point-geojson.json[]
 [[example_sf2]]
 .A Specimen Feature in GeoJSON format
 =================
-[source%autofit,JSON]
+[source%autofit,json]
 ----
 include::../openapi/examples/sampling/sampling-specimen-geojson.json[]
 ----
@@ -146,7 +303,7 @@ include::../openapi/examples/sampling/sampling-specimen-geojson.json[]
 [[example_sf3]]
 .A System Part Feature in GeoJSON format
 =================
-[source%autofit,JSON]
+[source%autofit,json]
 ----
 include::../openapi/examples/sampling/sampling-part-geojson.json[]
 ----

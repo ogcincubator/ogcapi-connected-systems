@@ -1,9 +1,21 @@
-[[rc_encoding-geojson]]
-[cols="1,4",width="90%",options="header"]
-|===
-2+|*Requirements Class*
-2+|http://www.opengis.net/spec/ogcapi-connectedsystems-1/1.0/req/encoding/geojson
-|Target type    |Web API
-|Dependency     |<<clause-api-common>>
-|Dependency     |http://www.opengis.net/spec/ogcapi-features-1/1.0/req/geojson
-|===
+[requirement,model=ogc]
+====
+[%metadata]
+type:: class
+identifier:: /req/geojson
+subject:: Web API
+inherit:: /req/api-common
+inherit:: http://www.opengis.net/spec/ogcapi-features-1/1.0/req/geojson
+requirement:: /req/geojson/mediatype-read
+requirement:: /req/geojson/mediatype-write
+requirement:: /req/geojson/relation-types
+requirement:: /req/geojson/feature-attribute-mapping
+requirement:: /req/geojson/system-schema
+requirement:: /req/geojson/system-mappings
+requirement:: /req/geojson/deployment-schema
+requirement:: /req/geojson/deployment-mappings
+requirement:: /req/geojson/procedure-schema
+requirement:: /req/geojson/procedure-mappings
+requirement:: /req/geojson/sf-schema
+requirement:: /req/geojson/sf-mappings
+====

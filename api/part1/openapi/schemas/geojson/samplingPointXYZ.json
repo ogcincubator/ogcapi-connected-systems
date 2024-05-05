@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SamplingPoint XYZ",
+  "allOf": [
+    { "$ref": "samplingSpatialParametric.json" },
+    {
+      "type": "object",
+      "properties": {
+        "geometry": {
+          "oneOf": [
+            { "$ref": "https://geojson.org/schema/Point.json" },
+            { "type": "null" }
+          ]
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "featureType": {
+              "type": "string",
+              "const": "http://www.opengis.net/def/samplingFeatureType/OGC-SML/2.0/SamplingPointXYZ"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

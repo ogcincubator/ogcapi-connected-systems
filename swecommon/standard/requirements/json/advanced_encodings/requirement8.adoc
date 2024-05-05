@@ -1,0 +1,7 @@
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/json-advanced-encodings/block-ref-component-valid
+
+The “ref” attribute of the “Block” object SHALL reference an aggregate component.
+====

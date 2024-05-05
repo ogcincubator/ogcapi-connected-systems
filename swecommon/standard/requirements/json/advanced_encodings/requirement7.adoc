@@ -1,0 +1,7 @@
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/json-advanced-encodings/no-datatype-length
+
+The “bitLength” and “byteLength” properties SHALL not be set when a fixed size data type is used.
+====

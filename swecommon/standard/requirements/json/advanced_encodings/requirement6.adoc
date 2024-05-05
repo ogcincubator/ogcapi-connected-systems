@@ -1,0 +1,7 @@
+[requirement,model=ogc]
+====
+[%metadata]
+identifier:: /req/json-advanced-encodings/datatype-compatible
+
+The chosen data type SHALL be compatible with the scalar component representation, constraints and NIL values.
+====

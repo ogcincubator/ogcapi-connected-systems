@@ -22,8 +22,14 @@
     "Deployment": {
       "$ref": "../../../../../sensorml/schemas/json/Deployment.json"
     },
+    "DeployedSystem": {
+      "$ref": "../../../../../sensorml/schemas/json/DeployedSystem.json"
+    },
     "DerivedProperty": {
       "$ref": "../../../../../sensorml/schemas/json/DerivedProperty.json"
+    },
+    "Pose": {
+      "$ref": "../../../../../sensorml/schemas/json/Pose.json"
     }
   }
 }

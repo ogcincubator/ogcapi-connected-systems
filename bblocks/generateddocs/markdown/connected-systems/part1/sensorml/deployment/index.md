@@ -5,7 +5,7 @@
 
 A Deployment Feature in SensorML format
 
-[*Status*](http://www.opengis.net/def/status): Invalid
+[*Status*](http://www.opengis.net/def/status): Under development
 
 ## Examples
 
@@ -63,55 +63,57 @@ A Deployment Feature in SensorML format
       [-173.70, 53.76]
     ]]
   },
-  "members": [
+  "platform": {
+    "system": {
+      "href": "https://data.example.org/api/systems/27559?f=sml",
+      "uid": "urn:x-saildrone:platforms:SD-1003",
+      "title": "Saildrone SD-1003"
+    }
+  },
+  "deployedSystems": [
     {
-      "href": "https://data.example.org/api/systems/2f35ofoms2l6?f=sml",
-      "uid": "urn:x-saildrone:platforms:SD-1001",
-      "title": "Saildrone SD-1001"
-    },
-    {
-      "href": "https://data.example.org/api/systems/2f35ofoms2l8?f=sml",
-      "uid": "urn:x-saildrone:platforms:SD-1002",
-      "title": "Saildrone SD-1002"
-    },
-    {
-      "type": "PhysicalSystem",
-      "name": "Saildrone SD-1003",
-      "uniqueId": "urn:x-saildrone:platforms:SD-1003",
-      "typeOf": {
-        "href": "https://data.example.org/api/systems/2f35ofoms2l9?f=sml"
+      "name": "air_temp_sensor",
+      "description": "Air temperature sensor installed in the boom",
+      "system": {
+        "href": "https://data.example.org/api/systems/41548?f=sml",
+        "uid": "urn:x-saildrone:sensors:temp01",
+        "title": "Air Temperature Sensor"
       },
-      "components": [
-        {
-          "name": "air_temp_sensor",
-          "href": "https://data.example.org/api/systems/41548?f=sml",
-          "uid": "urn:x-saildrone:sensors:temp01",
-          "title": "Air Temperature Sensor"
-        },
-        {
-          "name": "water_temp_sensor",
-          "href": "https://data.example.org/api/systems/36584?f=sml",
-          "uid": "urn:x-saildrone:sensors:temp02",
-          "title": "Water Temperature Sensor"
-        },
-        {
-          "name": "wind_sensor",
-          "href": "https://data.example.org/api/systems/47752?f=sml",
-          "uid": "urn:x-saildrone:sensors:wind01",
-          "title": "Wind Speed and Direction Sensor"
-        }
-      ]
+      "configuration": {
+        "setValues": [{
+          "ref": "parameters/sampling_rate",
+          "value": 0.1
+        }]
+      }
+    },
+    {
+      "name": "water_temp_sensor",
+      "description": "Water temperature sensor installed on the keel",
+      "system": {
+        "href": "https://data.example.org/api/systems/36584?f=sml",
+        "uid": "urn:x-saildrone:sensors:temp02",
+        "title": "Water Temperature Sensor"
+      }
+    },
+    {
+      "name": "wind_sensor",
+      "description": "Wind sensor installed at the top of the mast",
+      "system": {
+        "href": "https://data.example.org/api/systems/47752?f=sml",
+        "uid": "urn:x-saildrone:sensors:wind01",
+        "title": "Wind Speed and Direction Sensor"
+      }
     }
   ],
   "links": [
     {
-      "href" : "https://data.example.org/api/deployments/iv3f2kcq27gfi?f=sml",
       "rel" : "self",
+      "href" : "https://data.example.org/api/deployments/iv3f2kcq27gfi?f=sml",
       "type" : "application/sml+json",
       "title" : "this document"
     }, {
-      "href" : "https://data.example.org/api/deployments/iv3f2kcq27gfi?f=json",
       "rel" : "alternate",
+      "href" : "https://data.example.org/api/deployments/iv3f2kcq27gfi?f=json",
       "type" : "application/geo+json",
       "title" : "this resource as GeoJSON"
     }
@@ -124,15 +126,16 @@ A Deployment Feature in SensorML format
 ```yaml
 $schema: http://json-schema.org/draft-07/schema#
 allOf:
-- $ref: ../../../../../../api/part1/openapi/schemas/sensorml/sensormlDefs.json#/definitions/Deployment
+- $ref: https://ogcincubator.github.io/ogcapi-connected-systems/api/part1/openapi/schemas/sensorml/sensormlDefs.json#/definitions/Deployment
 - properties:
     definition:
       const: http://www.w3.org/ns/ssn/Deployment
     links:
       description: Links to related resources
-      $ref: ../../../../../../api/part1/openapi/schemas/common/links.json
+      $ref: https://ogcincubator.github.io/ogcapi-connected-systems/api/part1/openapi/schemas/common/links.json
   required:
   - definition
+  - uniqueId
 
 ```
 

@@ -1,81 +1,137 @@
 {
-  "@context": {
-    "bblocks": "https://www.opengis.net/def/bblocks/",
-    "@base": "https://www.opengis.net/def/bblocks/",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
-    "dct": "http://purl.org/dc/terms/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "itemIdentifier": "@id",
-    "name": "rdfs:label",
-    "abstract": "dct:abstract",
-    "status": {
-      "@id": "bblocks:status",
-      "@type": "@id",
-      "@context": {
-        "@base": "http://www.opengis.net/def/status/"
+  "@context": [
+    {
+      "@base": "https://ogcincubator.github.io/ogcapi-connected-systems/"
+    },
+    {
+      "bblocks": "https://www.opengis.net/def/bblocks/",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "dct": "http://purl.org/dc/terms/",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "prof": "http://www.w3.org/ns/dx/prof/",
+      "dcat": "http://www.w3.org/ns/dcat#",
+      "modspec": "http://www.opengis.net/def/ont/modspec/",
+      "itemIdentifier": "@id",
+      "baseURL": "@id",
+      "name": "rdfs:label",
+      "abstract": "dct:abstract",
+      "description": "dct:description",
+      "status": {
+        "@id": "bblocks:status",
+        "@type": "@id",
+        "@context": {
+          "@base": "http://www.opengis.net/def/status/"
+        }
+      },
+      "dateTimeAddition": {
+        "@id": "dct:created",
+        "@type": "xsd:dateTime"
+      },
+      "version": "dct:hasVersion",
+      "dateOfLastChange": {
+        "@id": "dct:modified",
+        "@type": "xsd:date"
+      },
+      "scope": {
+        "@id": "bblocks:scope",
+        "@type": "@id",
+        "@context": {
+          "@base": "http://www.opengis.net/def/bblocks/scope/"
+        }
+      },
+      "sources": {
+        "@id": "dct:source",
+        "@context": {
+          "title": "rdfs:label",
+          "link": "@id"
+        }
+      },
+      "schema": {
+        "@id": "bblocks:hasSchema",
+        "@type": "@id",
+        "@container": "@index",
+        "@index": "dct:format"
+      },
+      "ldContext": {
+        "@id": "bblocks:hasJsonLdContext",
+        "@type": "@id"
+      },
+      "sourceLdContext": {
+        "@id": "bblocks:hasSourceJsonLdContext",
+        "@type": "@id"
+      },
+      "documentation": {
+        "@id": "dct:description",
+        "@type": "@id",
+        "@container": "@index",
+        "@index": "dct:identifier",
+        "@context": {
+          "mediatype": "dct:format",
+          "url": "rdfs:isDefinedBy"
+        }
+      },
+      "hasConcepts": {
+        "@reverse": "skos:inScheme"
+      },
+      "dependsOn": {
+        "@id": "bblocks:dependsOn",
+        "@type": "@id"
+      },
+      "profileOf": {
+        "@id": "prof:isProfileOf",
+        "@type": "@id"
+      },
+      "tags": "dcat:keyword",
+      "shaclRules": {
+        "@id": "bblocks:hasShaclRule",
+        "@type": "@id",
+        "@container": "@index",
+        "@index": "rdfs:seeAlso"
+      },
+      "validationReport": {
+        "@id": "bblocks:hasValidationReport",
+        "@type": "@id"
+      },
+      "imports": {
+        "@id": "bblocks:imports",
+        "@type": "@id"
+      },
+      "conformanceClasses": {
+        "@id": "modspec:class",
+        "@type": "@id"
       }
-    },
-    "dateTimeAddition": {
-      "@id": "dct:created",
-      "@type": "xsd:dateTime"
-    },
-    "version": "dct:hasVersion",
-    "dateOfLastChange": {
-      "@id": "dct:modified",
-      "@type": "xsd:date"
-    },
-    "scope": {
-      "@id": "bblocks:scope",
-      "@type": "@id",
-      "@context": {
-        "@base": "http://www.opengis.net/def/bblocks/scope/"
-      }
-    },
-    "sources": {
-      "@id": "dct:source",
-      "@context": {
-        "title": "rdfs:label",
-        "link": "@id"
-      }
-    },
-    "schema": {
-      "@id": "bblocks:hasSchema",
-      "@type": "@id",
-      "@container": "@index",
-      "@index": "dct:format"
-    },
-    "ldContext": {
-      "@id": "bblocks:hasJsonLdContext",
-      "@type": "@id"
-    },
-    "documentation": {
-      "@id": "dct:description",
-      "@type": "@id",
-      "@container": "@index",
-      "@index": "dct:identifier",
-      "@context": {
-        "mediatype": "dct:format",
-        "url": "rdfs:isDefinedBy"
-      }
-    },
-    "hasConcepts": {
-      "@reverse": "skos:inScheme"
-    },
-    "dependsOn": {
-      "@id": "bblocks:dependsOn",
-      "@type": "@id"
+    }
+  ],
+  "modified": "2024-05-05T00:58:43.085932",
+  "tooling": {
+    "bblocks-postprocess": {
+      "commitId": "\"c3f59d37227b7fd3200f4b4c75a74a145ece69fe",
+      "shortCommitId": "\"c3f59d",
+      "date": "2024-05-03T13:34:33+00:00\""
     }
   },
-  "@id": "https://www.opengis.net/def/bblocks",
-  "@type": "skos:ConceptScheme",
-  "skos:prefLabel": "OGC Building Blocks Register",
+  "gitRepository": "https://github.com/ogcincubator/ogcapi-connected-systems",
+  "gitHubRepository": "https://github.com/ogcincubator/ogcapi-connected-systems/blob/master/",
+  "name": "Building Blocks - workspace",
+  "baseURL": "https://ogcincubator.github.io/ogcapi-connected-systems/",
+  "viewerURL": "https://ogcincubator.github.io/ogcapi-connected-systems/",
+  "validationReport": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/tests/report.html",
+  "imports": [
+    "https://opengeospatial.github.io/bblocks/register.json",
+    "https://opengeospatial.github.io/ogcapi-sosa/build/register.json"
+  ],
+  "@type": [
+    "skos:ConceptScheme",
+    "dcat:Catalog"
+  ],
+  "skos:prefLabel": "Building Blocks - workspace",
   "hasConcepts": [
     {
       "itemIdentifier": "ogc.connected-systems.part1.sensorml.deployment",
       "name": "SensorML Deployment",
       "abstract": "A Deployment Feature in SensorML format",
-      "status": "invalid",
+      "status": "under-development",
       "dateTimeAddition": "2023-10-11T00:00:00Z",
       "itemClass": "schema",
       "register": "ogc-building-block-register",
@@ -85,32 +141,38 @@
         "connected-systems",
         "sensorml"
       ],
-      "dateOfLastChange": "2023-10-11",
+      "dateOfLastChange": "2024-05-05",
       "schema": {
         "application/yaml": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/annotated-schemas/connected-systems/part1/sensorml/deployment/schema.yaml",
         "application/json": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/annotated-schemas/connected-systems/part1/sensorml/deployment/schema.json"
       },
-      "shaclRules": [],
+      "shaclRules": {},
+      "sourceSchema": "https://ogcincubator.github.io/ogcapi-connected-systems/api/part1/openapi/schemas/sensorml/deployment.json",
       "sourceFiles": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/_sources/part1/sensorml/deployment/",
-      "validationPassed": false,
+      "validationPassed": true,
       "testOutputs": "https://github.com/ogcincubator/ogcapi-connected-systems/blob/master/bblocks/tests/connected-systems/part1/sensorml/deployment/",
       "documentation": {
-        "markdown": {
-          "mediatype": "text/markdown",
-          "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/markdown/connected-systems/part1/sensorml/deployment/index.md"
-        },
         "json-full": {
           "mediatype": "application/json",
           "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/json-full/connected-systems/part1/sensorml/deployment/index.json"
         },
+        "markdown": {
+          "mediatype": "text/markdown",
+          "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/markdown/connected-systems/part1/sensorml/deployment/index.md"
+        },
         "slate": {
           "mediatype": "text/html",
           "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/slate-build/connected-systems/part1/sensorml/deployment/"
+        },
+        "bblocks-viewer": {
+          "mediatype": "text/html",
+          "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblock/ogc.connected-systems.part1.sensorml.deployment"
         }
       },
       "@type": [
         "bblocks:Schema",
-        "skos:Concept"
+        "skos:Concept",
+        "dcat:Dataset"
       ]
     }
   ]

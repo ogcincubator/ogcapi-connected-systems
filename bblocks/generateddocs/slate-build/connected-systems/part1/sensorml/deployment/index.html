@@ -285,9 +285,9 @@
   color: #859900;
 }
     </style>
-    <link href="../../../../stylesheets/screen-5b4bf600.css" rel="stylesheet" media="screen" />
+    <link href="../../../../stylesheets/screen-39090b13.css" rel="stylesheet" media="screen" />
     <link href="../../../../stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
-      <script src="../../../../javascripts/all-0c8314cb.js"></script>
+      <script src="../../../../javascripts/all-a25e0d73.js"></script>
 
     <script>
       $(function() { setupCodeCopy(); });
@@ -340,11 +340,11 @@
 
 <p class="status">
     <span data-rainbow-uri="http://www.opengis.net/def/status">Status</span>:
-    <a href="http://www.opengis.net/def/status/invalid" target="_blank" data-rainbow-uri>Invalid</a>
+    <a href="http://www.opengis.net/def/status/under-development" target="_blank" data-rainbow-uri>Under development</a>
 </p>
 
-<aside class="warning">
-Validation for this building block has <strong><a href="https://github.com/ogcincubator/ogcapi-connected-systems/blob/master/bblocks/tests/connected-systems/part1/sensorml/deployment/" target="_blank">failed</a></strong>
+<aside class="success">
+This building block is <strong><a href="https://github.com/ogcincubator/ogcapi-connected-systems/blob/master/bblocks/tests/connected-systems/part1/sensorml/deployment/" target="_blank">valid</a></strong>
 </aside>
 <h1 id='examples'>Examples</h1><h2 id='sensorml-deployment'>SensorML deployment</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deployment"</span><span class="p">,</span><span class="w">
@@ -397,55 +397,57 @@ Validation for this building block has <strong><a href="https://github.com/ogcin
       </span><span class="p">[</span><span class="mf">-173.70</span><span class="p">,</span><span class="w"> </span><span class="mf">53.76</span><span class="p">]</span><span class="w">
     </span><span class="p">]]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"members"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"platform"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/27559?f=sml"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:platforms:SD-1003"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Saildrone SD-1003"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"deployedSystems"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/2f35ofoms2l6?f=sml"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:platforms:SD-1001"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Saildrone SD-1001"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/2f35ofoms2l8?f=sml"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:platforms:SD-1002"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Saildrone SD-1002"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PhysicalSystem"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Saildrone SD-1003"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"uniqueId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:platforms:SD-1003"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"typeOf"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/2f35ofoms2l9?f=sml"</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"air_temp_sensor"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Air temperature sensor installed in the boom"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/41548?f=sml"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:sensors:temp01"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Air Temperature Sensor"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"air_temp_sensor"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/41548?f=sml"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:sensors:temp01"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Air Temperature Sensor"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"water_temp_sensor"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/36584?f=sml"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:sensors:temp02"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Water Temperature Sensor"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wind_sensor"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/47752?f=sml"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:sensors:wind01"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wind Speed and Direction Sensor"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="nl">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"setValues"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="nl">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"parameters/sampling_rate"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"water_temp_sensor"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Water temperature sensor installed on the keel"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/36584?f=sml"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:sensors:temp02"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Water Temperature Sensor"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wind_sensor"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wind sensor installed at the top of the mast"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/systems/47752?f=sml"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x-saildrone:sensors:wind01"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wind Speed and Direction Sensor"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/deployments/iv3f2kcq27gfi?f=sml"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"rel"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/deployments/iv3f2kcq27gfi?f=sml"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"application/sml+json"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"this document"</span><span class="w">
     </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/deployments/iv3f2kcq27gfi?f=json"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"rel"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"alternate"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.example.org/api/deployments/iv3f2kcq27gfi?f=json"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"application/geo+json"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"this resource as GeoJSON"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -459,15 +461,16 @@ Validation for this building block has <strong><a href="https://github.com/ogcin
 </blockquote>
 <h1 id='json-schema'>JSON Schema</h1><div class="highlight"><pre class="highlight yaml tab-yaml--schema"><code><span class="na">$schema</span><span class="pi">:</span> <span class="s">http://json-schema.org/draft-07/schema#</span>
 <span class="na">allOf</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">$ref</span><span class="pi">:</span> <span class="s">../../../../../../api/part1/openapi/schemas/sensorml/sensormlDefs.json#/definitions/Deployment</span>
+<span class="pi">-</span> <span class="na">$ref</span><span class="pi">:</span> <span class="s">https://ogcincubator.github.io/ogcapi-connected-systems/api/part1/openapi/schemas/sensorml/sensormlDefs.json#/definitions/Deployment</span>
 <span class="pi">-</span> <span class="na">properties</span><span class="pi">:</span>
     <span class="na">definition</span><span class="pi">:</span>
       <span class="na">const</span><span class="pi">:</span> <span class="s">http://www.w3.org/ns/ssn/Deployment</span>
     <span class="na">links</span><span class="pi">:</span>
       <span class="na">description</span><span class="pi">:</span> <span class="s">Links to related resources</span>
-      <span class="na">$ref</span><span class="pi">:</span> <span class="s">../../../../../../api/part1/openapi/schemas/common/links.json</span>
+      <span class="na">$ref</span><span class="pi">:</span> <span class="s">https://ogcincubator.github.io/ogcapi-connected-systems/api/part1/openapi/schemas/common/links.json</span>
   <span class="na">required</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">definition</span>
+  <span class="pi">-</span> <span class="s">uniqueId</span>
 
 </code></pre></div>
 <blockquote>

@@ -1,6 +1,20 @@
 {
+  "modified": "2024-05-05T00:58:43.085932",
+  "tooling": {
+    "bblocks-postprocess": {
+      "commitId": "\"c3f59d37227b7fd3200f4b4c75a74a145ece69fe",
+      "shortCommitId": "\"c3f59d",
+      "date": "2024-05-03T13:34:33+00:00\""
+    }
+  },
+  "gitRepository": "https://github.com/ogcincubator/ogcapi-connected-systems",
+  "gitHubRepository": "https://github.com/ogcincubator/ogcapi-connected-systems/blob/master/",
+  "name": "workspace",
+  "baseURL": "https://ogcincubator.github.io/ogcapi-connected-systems/",
+  "viewerURL": "https://ogcincubator.github.io/ogcapi-connected-systems/",
+  "validationReport": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/tests/report.html",
   "imports": [
-    "https://blocks.ogc.org/register.json",
+    "https://opengeospatial.github.io/bblocks/register.json",
     "https://opengeospatial.github.io/ogcapi-sosa/build/register.json"
   ],
   "bblocks": [
@@ -8,7 +22,7 @@
       "itemIdentifier": "ogc.connected-systems.part1.sensorml.deployment",
       "name": "SensorML Deployment",
       "abstract": "A Deployment Feature in SensorML format",
-      "status": "invalid",
+      "status": "under-development",
       "dateTimeAddition": "2023-10-11T00:00:00Z",
       "itemClass": "schema",
       "register": "ogc-building-block-register",
@@ -18,27 +32,32 @@
         "connected-systems",
         "sensorml"
       ],
-      "dateOfLastChange": "2023-10-11",
+      "dateOfLastChange": "2024-05-05",
       "schema": {
         "application/yaml": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/annotated-schemas/connected-systems/part1/sensorml/deployment/schema.yaml",
         "application/json": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/annotated-schemas/connected-systems/part1/sensorml/deployment/schema.json"
       },
-      "shaclRules": [],
+      "shaclRules": {},
+      "sourceSchema": "https://ogcincubator.github.io/ogcapi-connected-systems/api/part1/openapi/schemas/sensorml/deployment.json",
       "sourceFiles": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/_sources/part1/sensorml/deployment/",
-      "validationPassed": false,
+      "validationPassed": true,
       "testOutputs": "https://github.com/ogcincubator/ogcapi-connected-systems/blob/master/bblocks/tests/connected-systems/part1/sensorml/deployment/",
       "documentation": {
-        "markdown": {
-          "mediatype": "text/markdown",
-          "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/markdown/connected-systems/part1/sensorml/deployment/index.md"
-        },
         "json-full": {
           "mediatype": "application/json",
           "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/json-full/connected-systems/part1/sensorml/deployment/index.json"
         },
+        "markdown": {
+          "mediatype": "text/markdown",
+          "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/markdown/connected-systems/part1/sensorml/deployment/index.md"
+        },
         "slate": {
           "mediatype": "text/html",
           "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblocks/generateddocs/slate-build/connected-systems/part1/sensorml/deployment/"
+        },
+        "bblocks-viewer": {
+          "mediatype": "text/html",
+          "url": "https://ogcincubator.github.io/ogcapi-connected-systems/bblock/ogc.connected-systems.part1.sensorml.deployment"
         }
       }
     }

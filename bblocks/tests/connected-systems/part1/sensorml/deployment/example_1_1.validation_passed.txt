@@ -1,0 +1,10 @@
+Validation report for ogc.connected-systems.part1.sensorml.deployment - SensorML Deployment
+Generated 2024-05-05T00:58:53.730573+00:00
+=== Files ===
+Using example_1_1.json from examples
+=== End Files ===
+
+=== JSON Schema ===
+Validation passed
+=== End JSON Schema ===
+
